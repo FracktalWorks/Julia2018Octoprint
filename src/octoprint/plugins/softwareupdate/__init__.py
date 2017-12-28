@@ -226,10 +226,10 @@ class SoftwareUpdatePlugin(octoprint.plugin.BlueprintPlugin,
 			"checks": {
 				"octoprint": {
 					"type": "github_release",
-					"user": "foosel",
-					"repo": "OctoPrint",
+					"user": "FracktalWorks",
+					"repo": "JuliaMini2018Octoprint",
 					"method": "pip",
-					"pip": "https://github.com/foosel/OctoPrint/archive/{target_version}.zip",
+					"pip": "https://github.com/FracktalWorks/JuliaMini2018Octoprint/archive/{target_version}.zip",
 					"update_script": default_update_script,
 					"restart": "octoprint",
 					"stable_branch": dict(branch="master", commitish=["master"], name="Stable"),
