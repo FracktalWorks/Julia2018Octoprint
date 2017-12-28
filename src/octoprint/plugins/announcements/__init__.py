@@ -58,7 +58,7 @@ class AnnouncementPlugin(octoprint.plugin.AssetPlugin,
 	def get_settings_defaults(self):
 		settings = dict(channels=dict(_important=dict(name="Important Announcements",
 		                                              description="Important announcements about OctoPrint.",
-		                                              priority=1,
+		                                              priority=2,
 		                                              type="rss",
 		                                              url="https://octoprint.org/feeds/important.xml"),
 		                              _releases=dict(name="Release Announcements",
