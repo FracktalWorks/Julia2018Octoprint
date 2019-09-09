@@ -14,7 +14,7 @@ You can find out more about the change, how to know if a plugin is even affected
 
   * [#203](https://github.com/foosel/OctoPrint/issues/203) - Allow selecting the current tab via URL hashs. Also update URL hash when switching tabs, thus adding this to the browser history and allowing quicker back and forth navigation through the browser's back and forward buttons.
   * [#1026](https://github.com/foosel/OctoPrint/issues/1026) - Automatically upper case parameters in GCODE commands sent from the Terminal tab. A black list is in place that prevent upper casing of parameters for GCODE commands where it doesn't make sense (default: `M117`). See also [#2177](https://github.com/foosel/OctoPrint/pull/2177).
-  * [#2050](https://github.com/foosel/OctoPrint/issues/2050) - New hook [`octoprint.comm.protocol.temperatures.received`](http://docs.octoprint.org/en/maintenance/plugins/hooks.html#octoprint-comm-protocol-temperatures-received) that allows plugins to further preprocess/sanitize temperature data received from the printer. 
+  * [#2050](https://github.com/foosel/OctoPrint/issues/2050) - New hook [`octoprint.comm.protocol.temperatures.received`](http://docs.octoprint.org/en/maintenance/plugins/hooks.html#octoprint-comm-protocol-temperatures-received) that allows plugins to further preprocess/sanitize temperature data received from the printer.
   * [#2055](https://github.com/foosel/OctoPrint/issues/2055) - Increased the size of the API key field in the settings.
   * [#2056](https://github.com/foosel/OctoPrint/issues/2056) - Added a Copy button to the API key field in the settings and user settings.
   * [#2094](https://github.com/foosel/OctoPrint/issues/2094) - Allow UTF-8 display names for uploaded files. The files will still get an ASCII only name on disk, but the UTF-8 name used during upload will also be persisted and shown in the file list. This also allows using emojis in your file and folder names now.
@@ -34,7 +34,7 @@ You can find out more about the change, how to know if a plugin is even affected
   * New command `server` for testing server connections on the [JS test API](http://docs.octoprint.org/en/maintenance/api/util.html#post--api-util-test).
   * New hook [`octoprint.accesscontrol.keyvalidator`](http://docs.octoprint.org/en/maintenance/plugins/hooks.html#octoprint-accesscontrol-keyvalidator) that allows plugins to validate their own customized API keys to be used to access OctoPrint.
   * Updated `cookiecutter`, `requests` and `psutil` dependencies.
-  * Added safety warning to first run wizard. 
+  * Added safety warning to first run wizard.
   * More error resilience against broken view models.
   * New sub command `octoprint safemode`. Will set the `server.startOnceInSafeMode` setting in the config so that the next (re)start of the server after issuing this command will happen in safe mode.
   * New sub command `octoprint config effective`. Will report the effective config.
@@ -131,7 +131,7 @@ You can find out more about the change, how to know if a plugin is even affected
   * [#1572](https://github.com/foosel/OctoPrint/issues/1572) & [#1881](https://github.com/foosel/OctoPrint/issues/1881) - Refactored web interface startup process to minimise risk of race conditions and speed improvements. Also added sequence diagram to the documentation showing the new processing order.
   * [#1640](https://github.com/foosel/OctoPrint/issues/1640) - Mouse over temperature graph to get exact data for that time.
   * [#1679](https://github.com/foosel/OctoPrint/issues/1679) - Support temperature autoreporting by the firmware instead of polling if the firmware reports to support it. For this to work with Marlin 1.1.0 to 1.1.3 you'll need to explicitly enable `EXTENDED_CAPABILITIES_REPORT` *and* `AUTO_REPORT_TEMPERATURES` in your firmware configuration, otherwise your firmware won't report that it actually supports this feature.
-  * [#1737](https://github.com/foosel/OctoPrint/issues/1737) - Auto-detect Anet A8 firmware and treat as Repetier Firmware (which it actually appears to be, just renamed - thanks Anet for making this even harder). 
+  * [#1737](https://github.com/foosel/OctoPrint/issues/1737) - Auto-detect Anet A8 firmware and treat as Repetier Firmware (which it actually appears to be, just renamed - thanks Anet for making this even harder).
   * [#1842](https://github.com/foosel/OctoPrint/issues/1842) - Update bundled FontAwesome to 4.7 (see also [#1915](https://github.com/foosel/OctoPrint/pull/1915)).
   * [#1910](https://github.com/foosel/OctoPrint/issues/1910) - Make last/pause/cancel temperature available for GCODE scripts.
   * [#1925](https://github.com/foosel/OctoPrint/issues/1925) - Include configured webcam stream URL in "Webcam stream not loaded" message for logged in users/admins. Slightly different wording for guests vs users vs admins.
@@ -194,7 +194,7 @@ You can find out more about the change, how to know if a plugin is even affected
   * Software Update Plugin: Perform server restart asynchronously. Should reduce restart times on updates significantly.
   * Don't hex-escape `\t`, `\r` or `\n` in terminal output
   * Use client side default printer profile if the default profile could not be found on the server
-  * Use both "to" and "from" coordinates of a given move for min/max model coordinate calculation in GCODE analysis. Otherwise wrong values could be calculated under certain circumstances.  
+  * Use both "to" and "from" coordinates of a given move for min/max model coordinate calculation in GCODE analysis. Otherwise wrong values could be calculated under certain circumstances.
   * Fix potential race condition in resend request handling.
   * Fix potential race condition in web socket handling.
   * Fix handling of tool offsets in GCODE analysis - diverted too far from firmware implementations, causing wrong calculations.
@@ -499,7 +499,7 @@ If you are running OctoPi, this does **not** apply to you and you do not need to
   * New Javascript client library for utilizing the server's API, can be reused by `UiPlugin`s.
   * OctoPrint will now track the current print head position on pause and cancel and provide it as new template variables ``pause_position``/``cancel_position`` for the relevant GCODE scripts. This will allow more intelligent pause codes that park the print head at a rest position during pause and move it back to the exact position it was before the pause on resume ([Example](https://gist.github.com/foosel/1c09e269b1c0bb7a471c20eef50c8d3e)). Note that this is NOT enabled by default and for now will necessitate adjusting the pause and resume GCODE scripts yourself since position tracking with multiple extruders or when printing from SD is currently not fool proof thanks to firmware limitations regarding reliable tracking of the various ``E`` values and the currently selected tool ``T``. In order to fully implement this feature, the following improvements were also done:
     * New ``PositionUpdated`` event when OctoPrint receives a response to an ``M114`` position query.
-    * Extended ``PrintPaused`` and ``PrintCancelled`` events with position data from ``M114`` position query on print interruption/end.
+    * Extended ``PrintPaused`` and ``PrintCancelled`` events with position data from ``M114``_recordFilePosition _recordFilePosition _recordFilePosition _recordFilePosition _recordFilePosition _recordFilePosition _recordFilePosition  position query on print interruption/end.
   * Added (optional) firmware auto detection. If enabled (which it is by default), OctoPrint will now send an ``M115`` to the printer on initial connection in order to try to figure out what kind of firmware it is. For FIRMWARE_NAME values containing "repetier" (case insensitive), all Repetier-specific flags will be set on the comm layer. For FIRMWARE_NAME values containing "reprapfirmware" (also case insensitive), all RepRapFirmware-specific flags will be set on the comm layer. For now no other handling will be performed.
   * Added safe mode flag ``--safe`` and config setting ``startOnceInSafeMode`` that disables all third party plugins when active. The config setting will automatically be removed from `config.yaml` after the server has started through successfully.
   * Added ``octoprint config`` CLI that allows easier manipulation of config.yaml entries from the command line. Example: ``octoprint config set --bool server.startOnceInSafeMode true``
