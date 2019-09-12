@@ -330,7 +330,7 @@ default_settings = {
 		"gcode": {
 			"afterPrintDone": ";goto home position\nG28 X0 Y0 Z0",
 			"afterPrintPaused": "{% if pause_position.x is not none %}\n; relative XYZE\nG91\nM83\n\n; retract filament, move Z slightly upwards\nG1 Z+5 E-5 F4500\n\n; absolute XYZE\nM82\nG90\n\n; move to a safe rest position, adjust as necessary\nG1 X10 Y10\n{% endif %}",
-			"beforePrintResumed": "{% if pause_position.x is not none %}\nM83\nT{{ pause_position.t}}\nG1 E-5 F4500\nG1 E5 F4500\nG1 E5 F4500\nM82\nG90\n\G92 E{{ pause_position.e }}\nG1 X{{ pause_position.x }} Y{{ pause_position.y }} Z{{ pause_position.z }} F4500\n{% if pause_position.f is not none %}G1 F{{ pause_position.f }}{% endif %}\n{% endif %}",
+			"beforePrintResumed": "{% if pause_position.x is not none %}\nM83\nT{{ pause_position.t}}\nG1 E-5 F4500\nG1 E5 F4500\nG1 E5 F4500\nM82\nG90\nG92 E{{ pause_position.e }}\nG1 X{{ pause_position.x }} Y{{ pause_position.y }} Z{{ pause_position.z }} F4500\n{% if pause_position.f is not none %}G1 F{{ pause_position.f }}{% endif %}\n{% endif %}",
 			"afterPrintCancelled": "; disable motors\nM84\n\n;disable all heaters\n{% snippet 'disable_hotends' %}\n{% snippet 'disable_bed' %}\n;disable fan\nM106 S0",
 			"snippets": {
 				"disable_hotends": "{% for tool in range(printer_profile.extruder.count) %}M104 T{{ tool }} S0\n{% endfor %}",
